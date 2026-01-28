@@ -12,6 +12,7 @@ connectDB();
 
 import "./config/passport.js"
 
+import sensorRoutes from "./routes/sensorRoutes.js"
 import authRoutes from "./routes/authRoutes.js";
 import listingRoutes from "./routes/listingRoutes.js";
 import buyerRoutes from "./routes/buyerRoutes.js";
@@ -59,6 +60,7 @@ app.use(passport.session());
 app.use("/api/listings", listingRoutes);
 app.use("/api/buy", buyerRoutes);
 app.use("/auth", authRoutes);
+app.use("/api",sensorRoutes);
 
 app.listen(port,()=>{
     console.log(`SahayaKIISAN's Server is running on port ${port}`);

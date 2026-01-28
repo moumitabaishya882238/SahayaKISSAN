@@ -1,5 +1,7 @@
 import "./Schemes.css";
-import Reveal from "../components/Reveal";
+import Reveal from "../components/Reveal";  
+import axios from "axios";
+import { useEffect } from "react";
 export default function Info() {
 const schemes = [
   {
@@ -99,6 +101,13 @@ const schemes = [
     link: "https://movcdner.dac.gov.in/",
   },
 ];
+async function getData(){
+  const res = await axios.get("http://localhost:5000/api/getData")
+  console.log(res.data);
+}
+useEffect(()=>{
+  getData();
+},[]);
   return (
     <div className="page-wrapper">
       {/* HERO */}
