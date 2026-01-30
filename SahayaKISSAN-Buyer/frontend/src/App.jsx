@@ -16,6 +16,8 @@ import Reviews from './pages/Reviews';
 import PageLoader from "./components/PageLoader";
 import Auth from "./components/Auth";
 import ProtectedRoute from "./components/ProtectedRoute";
+import IoTForm from "./pages/IoTForm";
+import IoTDashBoard from "./pages/IotDashBoard";
 
 function App() {
   return (
@@ -23,7 +25,7 @@ function App() {
       <Routes>
         <Route path="/auth" element={<Auth />} />
         <Route element={<Layout />}>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Home />} />  
           <Route path="/schemes" element={<Schemes />} />
           <Route path="/tea" element={
             <ProtectedRoute>
@@ -42,6 +44,9 @@ function App() {
           }/>
           <Route path="/product/:id" element={<ProductDetail />} />
           <Route path="/chat/:listingId" element={<ChatPage />} />
+          <Route path="/sensors-iot" element={<IoTForm />} /> 
+          <Route path="/dashboard" element={<IoTDashBoard />} />
+
 
         </Route>
         <Route path="*" element={<PageNotFound />} />

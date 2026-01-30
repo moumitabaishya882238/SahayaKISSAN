@@ -5,7 +5,7 @@ import express from "express";
 import cors from "cors";
 import session from "express-session";
 import passport from "passport";
-import charityRoutes from "./routes/charityRoutes.js"
+
 
 const app = express();
 const server = http.createServer(app);
@@ -15,6 +15,9 @@ connectDB();
 
 import "./config/passport.js";
 
+import sensorRoutes from "./routes/sensorRoutes.js";
+import charityRoutes from "./routes/charityRoutes.js"
+import iotRoutes from "./routes/iotRoutes.js";
 import authRoutes from "./routes/authRoutes.js";
 import listingRoutes from "./routes/listingRoutes.js";
 import buyerRoutes from "./routes/buyerRoutes.js";
@@ -136,6 +139,9 @@ app.use("/api/buy", buyerRoutes);
 app.use("/auth", authRoutes);
 app.use("/api/chat", chatRoutes);
 app.use("/charity",charityRoutes);
+app.use("/iot", iotRoutes);
+app.use("/api", sensorRoutes);
+
 
 /* ---------------- START SERVER ---------------- */
 server.listen(port, () => {
