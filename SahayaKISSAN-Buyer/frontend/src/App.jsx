@@ -9,6 +9,8 @@ const Seeds = lazy(()=>import("./pages/Seeds"))
 const Cart = lazy(()=>import("./pages/Cart"))
 const Schemes = lazy(()=>import("./pages/Schemes"))
 const ChatPage = lazy(()=>import("./pages/ChatPage"))
+import GlobalVoicePlayer from "./components/GlobalVoicePlayer";
+
 
 
 import ProductDetail from './pages/ProductDetail';
@@ -21,6 +23,8 @@ import IoTDashBoard from "./pages/IotDashBoard";
 
 function App() {
   return (
+    <>
+    <GlobalVoicePlayer />
     <Suspense fallback={<PageLoader />}>
       <Routes>
         <Route path="/auth" element={<Auth />} />
@@ -52,6 +56,8 @@ function App() {
         <Route path="*" element={<PageNotFound />} />
       </Routes>
     </Suspense>
+    </>
+    
   );
 }
 

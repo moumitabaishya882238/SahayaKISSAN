@@ -15,6 +15,8 @@ connectDB();
 
 import "./config/passport.js";
 
+import voiceRoutes from "./routes/voiceRoutes.js";
+
 import sensorRoutes from "./routes/sensorRoutes.js";
 import charityRoutes from "./routes/charityRoutes.js"
 import iotRoutes from "./routes/iotRoutes.js";
@@ -47,6 +49,7 @@ const corsOptions = {
 app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use("/audio", express.static("public/audio"));
 
 app.use(
   session({
@@ -141,7 +144,7 @@ app.use("/api/chat", chatRoutes);
 app.use("/charity",charityRoutes);
 app.use("/iot", iotRoutes);
 app.use("/api", sensorRoutes);
-
+app.use("/api-voice", voiceRoutes);
 
 /* ---------------- START SERVER ---------------- */
 server.listen(port, () => {

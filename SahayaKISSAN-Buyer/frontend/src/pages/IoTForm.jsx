@@ -1,9 +1,11 @@
 import { useState } from "react";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import "./IoTForm.css";
+import { useTranslation } from 'react-i18next';
 
 export default function IoTForm() {
+  const { t } = useTranslation();
   const [formData, setFormData] = useState({
     fullName: "",
     phone: "",
@@ -60,7 +62,7 @@ export default function IoTForm() {
         message: "",
       });
     } catch (err) {
-      setErrorMsg(err.response?.data?.message || "Failed to submit request. Please try again.");
+      setErrorMsg(err.response?.data?.message || t('form.errorGeneric'));
       setShowError(true);
     } finally {
       setLoading(false);
@@ -76,73 +78,71 @@ export default function IoTForm() {
     <div className="page">
       <div className="dashboardHeroBtn">
         <Link to="/dashboard" className="dashboardBtn">
-          Go to Dashboard
+          {t('form.goToDashboard')}
         </Link>
       </div>
 
       <div className="headingSection">
         <h1 className="mainHeading">
-          Smart IoT Solutions{" "}
-          <span className="assamText">for Assam Tea Farmers</span>
+          {t('hero.title')}{" "}
+          <span className="assamText">{t('hero.assamText')}</span>
         </h1>
         <p className="subHeading">
-          Affordable, field-ready devices designed specifically for Assam's tea plantations
+          {t('hero.subHeading')}
         </p>
       </div>
 
       <div className="heroImage"></div>
 
       <div className="whyIoTSection">
-        <h2 className="sectionTitle">Why IoT for Assam Tea Farming?</h2>
+        <h2 className="sectionTitle">{t('whyIoT.title')}</h2>
         
         <div className="whyIoTContent">
           <div className="whyIoTText">
             <p className="whyLead">
-              Assam's tea industry faces unique challenges: unpredictable monsoons, 
-              pest outbreaks, soil degradation, and labor shortages. Traditional farming 
-              relies on guesswork, leading to <strong>20-30% yield losses annually</strong>.
+              {t('whyIoT.lead')}
             </p>
             
             <div className="whyStats">
               <div className="statItem">
-                <div className="statNumber">₹15,000</div>
-                <div className="statLabel">Avg loss per acre/year</div>
+                <div className="statNumber">{t('whyIoT.stats.lossPerAcre')}</div>
+                <div className="statLabel">{t('whyIoT.stats.lossPerAcreLabel')}</div>
               </div>
               <div className="statItem">
-                <div className="statNumber">72%</div>
-                <div className="statLabel">Tea farms without tech</div>
+                <div className="statNumber">{t('whyIoT.stats.noTech')}</div>
+                <div className="statLabel">{t('whyIoT.stats.noTechLabel')}</div>
               </div>
               <div className="statItem">
-                <div className="statNumber">40%</div>
-                <div className="statLabel">Yield increase possible</div>
+                <div className="statNumber">{t('whyIoT.stats.yieldIncrease')}</div>
+                <div className="statLabel">{t('whyIoT.stats.yieldIncreaseLabel')}</div>
               </div>
             </div>
 
             <div className="whyBenefits">
-              <h3 className="benefitsTitle">IoT Solves These Problems:</h3>
+              <h3 className="benefitsTitle">{t('whyIoT.benefitsTitle')}</h3>
               <div className="benefitList">
                 <div className="benefitItem">
                   <span className="benefitIcon"></span>
                   <div>
-                    <strong>Precise Irrigation:</strong> Save 35% water by watering only when soil needs it
+                    <strong>{t('whyIoT.benefits.irrigation.title')}:</strong> {t('whyIoT.benefits.irrigation.desc')}
                   </div>
                 </div>
                 <div className="benefitItem">
                   <span className="benefitIcon"></span>
                   <div>
-                    <strong>Early Pest Alerts:</strong> Detect outbreaks 7 days earlier, save 25% crop loss
+                    <strong>{t('whyIoT.benefits.pest.title')}:</strong> {t('whyIoT.benefits.pest.desc')}
                   </div>
                 </div>
                 <div className="benefitItem">
                   <span className="benefitIcon"></span>
                   <div>
-                    <strong>Weather Integration:</strong> Microclimate data specific to your plantation
+                    <strong>{t('whyIoT.benefits.weather.title')}:</strong> {t('whyIoT.benefits.weather.desc')}
                   </div>
                 </div>
                 <div className="benefitItem">
                   <span className="benefitIcon"></span>
                   <div>
-                    <strong>Mobile Dashboard:</strong> Monitor entire farm from your phone
+                    <strong>{t('whyIoT.benefits.dashboard.title')}:</strong> {t('whyIoT.benefits.dashboard.desc')}
                   </div>
                 </div>
               </div>
@@ -152,62 +152,62 @@ export default function IoTForm() {
       </div>
 
       <div className="devicesSection">
-        <h2 className="sectionTitle"> Our Field-Ready Devices</h2>
+        <h2 className="sectionTitle">{t('devices.title')}</h2>
         <div className="deviceGrid">
           <div className="deviceCard available">
             <div className="deviceImgWrapper">
               <img
                 src="https://images.unsplash.com/photo-1598514982845-23f4f5c7aa0a"
-                alt="Smart Soil Monitoring Kit"
+                alt={t('devices.soil.alt')}
                 className="deviceImg"
               />
-              <span className="deviceBadge available">Available Now</span>
+              <span className="deviceBadge available">{t('devices.availableNow')}</span>
             </div>
-            <h3>Smart Soil Monitoring Kit</h3>
-            <p>Complete soil health monitoring - moisture, pH, nutrients, temperature.</p>
-            <div className="devicePrice">₹4,999</div>
+            <h3>{t('devices.soil.title')}</h3>
+            <p>{t('devices.soil.desc')}</p>
+            <div className="devicePrice">{t('devices.soil.price')}</div>
           </div>
 
           <div className="deviceCard">
             <div className="deviceImgWrapper">
               <img
                 src="https://images.unsplash.com/photo-1581091215367-59ab6c4d5b44"
-                alt="Weather Station"
+                alt={t('devices.weather.alt')}
                 className="deviceImg"
               />
-              <span className="deviceBadge comingSoon">Coming Q2 2026</span>
+              <span className="deviceBadge comingSoon">{t('devices.q2_2026')}</span>
             </div>
-            <h3>Weather & Microclimate Station</h3>
-            <p>Local rainfall, humidity, wind speed, temperature forecasting.</p>
-            <div className="devicePrice coming">₹6,499</div>
+            <h3>{t('devices.weather.title')}</h3>
+            <p>{t('devices.weather.desc')}</p>
+            <div className="devicePrice coming">{t('devices.weather.price')}</div>
           </div>
 
           <div className="deviceCard">
             <div className="deviceImgWrapper">
               <img
                 src="https://images.unsplash.com/photo-1615671524827-c1fe3973b648"
-                alt="Pest Detection"
+                alt={t('devices.pest.alt')}
                 className="deviceImg"
               />
-              <span className="deviceBadge comingSoon">Coming Q3 2026</span>
+              <span className="deviceBadge comingSoon">{t('devices.q3_2026')}</span>
             </div>
-            <h3>Pest & Disease Alert</h3>
-            <p>Camera + AI detects pests and diseases instantly with alerts.</p>
-            <div className="devicePrice coming">₹8,999</div>
+            <h3>{t('devices.pest.title')}</h3>
+            <p>{t('devices.pest.desc')}</p>
+            <div className="devicePrice coming">{t('devices.pest.price')}</div>
           </div>
 
           <div className="deviceCard">
             <div className="deviceImgWrapper">
               <img
                 src="https://images.unsplash.com/photo-1623874514711-0f321325f318"
-                alt="AI Scanner"
+                alt={t('devices.scanner.alt')}
                 className="deviceImg"
               />
-              <span className="deviceBadge comingSoon">Coming Q4 2026</span>
+              <span className="deviceBadge comingSoon">{t('devices.q4_2026')}</span>
             </div>
-            <h3>AI Tea Leaf Quality Scanner</h3>
-            <p>Instant grading and quality assessment of harvested tea leaves.</p>
-            <div className="devicePrice coming">₹12,999</div>
+            <h3>{t('devices.scanner.title')}</h3>
+            <p>{t('devices.scanner.desc')}</p>
+            <div className="devicePrice coming">{t('devices.scanner.price')}</div>
           </div>
         </div>
       </div>
@@ -215,23 +215,23 @@ export default function IoTForm() {
       <div className="ctaSection">
         <div className="ctaContent">
           <p className="ctaText">
-            Ready to transform your tea farm with smart IoT technology?
+            {t('cta.text')}
           </p>
           <p className="ctaSubtext">
-            Request deployment for your plantation today - installation included
+            {t('cta.subtext')}
           </p>
         </div>
       </div>
 
       <div className="formSection">
-        <h2 className="sectionTitle"> Request Device Deployment</h2>
+        <h2 className="sectionTitle">{t('form.title')}</h2>
 
         <form className="form" onSubmit={handleSubmit}>
           <div className="formRow">
             <input
               type="text"
               name="fullName"
-              placeholder="Full Name *"
+              placeholder={t('form.fullName')}
               value={formData.fullName}
               onChange={handleChange}
               required
@@ -239,7 +239,7 @@ export default function IoTForm() {
             <input
               type="tel"
               name="phone"
-              placeholder="Phone Number *"
+              placeholder={t('form.phone')}
               value={formData.phone}
               onChange={handleChange}
               required
@@ -249,7 +249,7 @@ export default function IoTForm() {
           <input
             type="email"
             name="email"
-            placeholder="Email Address *"
+            placeholder={t('form.email')}
             value={formData.email}
             onChange={handleChange}
             required
@@ -258,14 +258,14 @@ export default function IoTForm() {
           <input
             type="text"
             name="location"
-            placeholder="Farm Location / District"
+            placeholder={t('form.location')}
             value={formData.location}
             onChange={handleChange}
             required
           />
 
           <div className="formGroup">
-            <label className="formLabel">Select Devices Needed</label>
+            <label className="formLabel">{t('form.devicesLabel')}</label>
 
             <div className="deviceSelectBox">
               <label className="checkboxItem">
@@ -275,7 +275,7 @@ export default function IoTForm() {
                   checked={formData.devices.soil}
                   onChange={handleDeviceChange}
                 />
-                <span>Smart Soil Monitoring Kit (₹4,999)</span>
+                <span>{t('form.devices.soil')}</span>
               </label>
 
               <label className="checkboxItem">
@@ -285,7 +285,7 @@ export default function IoTForm() {
                   checked={formData.devices.weather}
                   onChange={handleDeviceChange}
                 />
-                <span>Weather Station (Coming Q2 2026)</span>
+                <span>{t('form.devices.weather')}</span>
               </label>
 
               <label className="checkboxItem">
@@ -295,7 +295,7 @@ export default function IoTForm() {
                   checked={formData.devices.pest}
                   onChange={handleDeviceChange}
                 />
-                <span>Pest & Disease Alert (Coming Q3 2026)</span>
+                <span>{t('form.devices.pest')}</span>
               </label>
 
               <label className="checkboxItem">
@@ -305,14 +305,14 @@ export default function IoTForm() {
                   checked={formData.devices.scanner}
                   onChange={handleDeviceChange}
                 />
-                <span>AI Tea Leaf Scanner (Coming Q4 2026)</span>
+                <span>{t('form.devices.scanner')}</span>
               </label>
             </div>
           </div>
 
           <textarea
             name="message"
-            placeholder="Additional requirements or farm details..."
+            placeholder={t('form.message')}
             rows="4"
             className="formTextarea"
             value={formData.message}
@@ -320,7 +320,7 @@ export default function IoTForm() {
           />
 
           <button type="submit" className="submitBtn" disabled={loading}>
-            {loading ? " Submitting..." : " Deploy IoT to My Farm"}
+            {loading ? t('form.submitting') : t('form.submitBtn')}
           </button>
         </form>
       </div>
@@ -330,9 +330,9 @@ export default function IoTForm() {
         <div className="popup-overlay" onClick={closePopup}>
           <div className="popup success-popup" onClick={(e) => e.stopPropagation()}>
             <div className="popup-icon">✅</div>
-            <h3>Request Submitted Successfully!</h3>
-            <p>Our team will contact you within 24 hours to discuss deployment.</p>
-            <button className="popup-btn" onClick={closePopup}>Got it!</button>
+            <h3>{t('popup.success.title')}</h3>
+            <p>{t('popup.success.message')}</p>
+            <button className="popup-btn" onClick={closePopup}>{t('popup.gotIt')}</button>
           </div>
         </div>
       )}
@@ -342,9 +342,9 @@ export default function IoTForm() {
         <div className="popup-overlay" onClick={closePopup}>
           <div className="popup error-popup" onClick={(e) => e.stopPropagation()}>
             <div className="popup-icon">❌</div>
-            <h3>Submission Failed</h3>
+            <h3>{t('popup.error.title')}</h3>
             <p>{errorMsg}</p>
-            <button className="popup-btn" onClick={closePopup}>Try Again</button>
+            <button className="popup-btn" onClick={closePopup}>{t('popup.tryAgain')}</button>
           </div>
         </div>
       )}
