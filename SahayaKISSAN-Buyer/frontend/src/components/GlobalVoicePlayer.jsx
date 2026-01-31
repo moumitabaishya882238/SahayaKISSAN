@@ -55,6 +55,7 @@ export default function GlobalVoicePlayer() {
           src={`http://10.162.49.58:5000/audio/FIRE_NODE_001.mp3`}
           type="audio/mpeg"
         />
+        
       </audio>
     </>
   );
